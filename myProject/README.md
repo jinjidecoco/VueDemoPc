@@ -1,14 +1,18 @@
 # learnvue
 
-> Vue 
+> Vue 使用方法： Vue-cli
 
 ## Build Setup
 
 ``` bash
 # install dependencies
-npm install
 
-# serve with hot reload at localhost:8080
+npm install -g vue-cli
+
+vue init webpack myProject
+cd myProject
+
+# serve with hot reload at localhost:8181
 npm run dev
 
 # build for production with minification
@@ -26,5 +30,5 @@ npm run e2e
 # run all tests
 npm test
 ```
-
+vue 项目小练习
 For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
