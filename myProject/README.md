@@ -1,6 +1,6 @@
 # learnvue
 
-> Vue 使用方法： Vue-cli
+> Vue 使用方法： 基于脚手架Vue-cli的项目练习
 
 ## Build Setup
 
