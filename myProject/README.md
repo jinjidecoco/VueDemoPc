@@ -1,4 +1,4 @@
-# learnvue
+# Vue入门测试练习
 
 > Vue 使用方法： 基于脚手架Vue-cli的项目练习
 
