@@ -3,7 +3,7 @@
 	    <span>{{ msg }}</span>	
 	</div>
 </template>
-<script >
+<script>
 
 	export default {
 	  name: 'headA',
@@ -11,14 +11,21 @@
 	    return {
 	      msg: '我的计划表'
 	    }
+	  },
+	  methods:{
+	  	showtime:function(){
+           var oDate= new Date();
+           Date.getMonth() +1;
+           Date.getDate();
+	  	}
 	  }
 }
 </script>
 <style lang='less'>
 	.header{
-		background:#f1f5f5;
+		background:#fafafa;
 		height:60px;
 		line-height: 60px;
 	}
-
+    
 </style>

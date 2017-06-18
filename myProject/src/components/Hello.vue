@@ -2,8 +2,8 @@
 <template>
   <div class='add-item'>
   <i class='add-icon'></i>
-    <input class='input-text'type="text" placeholder=" 创建一个任务" v-model='toDo'>
-    <input class='input-btn' type="button" value="确定" @click='add' checked="" @keyup.enter='add'>  
+    <input class='input-text'type="text" placeholder=" 创建一个任务" v-model='toDo' @keyup.enter='add'>
+    <input class='input-btn' type="button" value="确定" @click='add' checked="" >  
     <input class='input-btn' type="button" value="删除">  
     <ul class='items'>
       <li v-for =" toDo in toDos " class='item' :class='{ completed: toDo.completed}'>
@@ -14,18 +14,34 @@
          <i class='delete' @click='remove'></i>
       </li>
     </ul> 
-   <!--  <span>{{text}}</span>
- -->  </div>
+  </div>
 </template>
 
 <script>
+
+
+ var STORAGE_KEY = 'todos-vuejs-2.0';
+    var todoStorage = {
+      fetch: function () {
+        var toDos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
+        toDos.forEach(function (toDo, index) {
+          toDo.id = index
+        })
+        todoStorage.uid = toDos.length
+        return toDos         
+      },
+      save: function (toDos) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(toDos))
+      }
+    }; 
 
 export default {
   name: 'hello',
   data() {
     return{
       toDos:[ ],
-      // name: ''
+      toDO: '',
+      toDos:todoStorage.fetch()
     }
   },
   methods:{ 
@@ -39,13 +55,23 @@ export default {
     remove:function(toDo){
       this.toDos.splice(this.toDos.indexOf(toDo), 1)
     }
-  }
+  },
+    watch: {
+         toDos: {
+             handler: function (toDos) {
+               todoStorage.save(toDos);
+             },
+             deep: true
+         }
+     }
 }
 </script>
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang='less'>
 .add-item{
   position: relative;
+  padding-bottom:60px;
+
 }
 .input-text{
   display: inline-block;
@@ -63,6 +89,7 @@ export default {
   border:1px solid #ccc;
   border-radius: 3px;
   background: #fff;
+  outline: none;
    &:hover{
     background:#18ffff;
     border:1px solid #18ffff ;
